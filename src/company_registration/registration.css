@@ -1,0 +1,36 @@
+.theme-box {
+    width: 100%;
+    max-width: 1350px;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+    gap: 25px;
+    background-color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 70px;
+}
+
+.save_btn {
+    background-color: #E11236 !important;
+    border: 1px solid #e11236 !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    font-size: 15px !important;
+    /* padding-bottom: 28px !important; */
+    border-radius: 4px !important;
+    box-shadow: 0px 0px 10px #fff !important;
+}
+
+.ship{
+    /* background-image: url('../images/ship.jpg'); */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 560px;
+    height: auto;
+    max-width: 30%;
+    width: 100%;
+    border-radius: 18px;
+}

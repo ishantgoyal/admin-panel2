@@ -1,0 +1,11 @@
+.login-box{
+    display: block;
+    max-width: 400px;
+    margin: 80px auto;
+    background-color: #f3f3f3;
+    padding: 20px;
+    border-radius: 10px;
+}
+.login-box-head{
+    text-align: center;
+}
