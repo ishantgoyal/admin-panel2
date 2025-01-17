@@ -77,9 +77,9 @@ const ViewInventryList = () => {
         },
         {
             title: 'Product ID',
-            dataIndex: 'productId',
-            key: 'productId',
-            sorter: (a, b) => a.productId - b.productId,
+            dataIndex: '_id',
+            key: '_id',
+            sorter: (a, b) => a._id - b._id,
         },
         {
             title: 'Product Name',
@@ -100,8 +100,8 @@ const ViewInventryList = () => {
         },
         {
             title: 'Location',
-            dataIndex: 'location',
-            key: 'location'
+            dataIndex: 'product_location',
+            key: 'product_location'
         },
         {
             title: 'Date Updated',

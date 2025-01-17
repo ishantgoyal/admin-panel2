@@ -11,24 +11,27 @@ const InventryAdd = () => {
   const [errors, set_errors] = useState([]);
   const [productId, set_productId] = useState('');
   const [productName, set_productName] = useState('');
+  const [product_color, set_product_color] = useState('');
+  const [product_location, set_product_location] = useState('');
   const [startingInventory, set_startingInventory] = useState('');
   const [soldInventory, set_soldInventory] = useState(0);
   const [defectiveInventory, set_defectiveInventory] = useState(0);
-  const [location, set_location] = useState('');
   const [date, set_date] = useState('');
+  const [stock_avilable, set_stock_avilable] = useState('');
   const [products, setProductList] = useState([]);
-  const [selectedProduct, setSelectedProduct] = useState(null);
 
   const ADD_API = async () => {
     set_loader(true);
     const FORM_DATA = {
       productId,
       productName,
+      product_color,
       startingInventory,
       soldInventory,
       defectiveInventory,
-      location,
-      date
+      product_location,
+      date,
+      stock_avilable
     };
 
     const API_RESPONSE = await ADD_INVENTRY(FORM_DATA);
@@ -45,7 +48,6 @@ const InventryAdd = () => {
       set_loader(false);
     }
   };
-
 
   const ProductListApi = async () => {
     try {
@@ -92,8 +94,6 @@ const InventryAdd = () => {
               )}
             </div>
           </div>
-
-
           <div className="col-6">
             <div className="input-box">
               <label>
@@ -101,8 +101,8 @@ const InventryAdd = () => {
               </label>
               <Select
                 onChange={(value, option) => {
-                  set_productName(option?.label || ''); 
-      
+                  set_productName(option?.label || '');
+
                 }}
                 style={{ width: "100%" }}
                 placeholder="--Select Product Name--"
@@ -116,7 +116,7 @@ const InventryAdd = () => {
                       <Select.Option
                         key={item.id}
                         value={item.id}
-                        label={item.productName} 
+                        label={item.productName}
                       >
                         {item.productName}
                       </Select.Option>
@@ -124,6 +124,77 @@ const InventryAdd = () => {
                   </>
                 ) : (
                   <Select.Option value="">No Product Available</Select.Option>
+                )}
+              </Select>
+            </div>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-6">
+            <div className="input-box">
+              <label>
+                Select Product Color<i style={{ color: 'red' }}>*</i>
+              </label>
+              <Select
+                onChange={(value, option) => {
+                  set_product_color(option?.label || '');
+                }}
+                style={{ width: "100%" }}
+                placeholder="--Select Product Color--"
+              >
+                {products?.length > 0 ? (
+                  <>
+                    <Select.Option value="" label="Select Product Color">
+                      Select Product Color
+                    </Select.Option>
+                    {products.map((item) => (
+                      <Select.Option
+                        key={item.id}
+                        value={item.id}
+                        label={item.product_color}
+                      >
+                        {item.product_color}
+                      </Select.Option>
+                    ))}
+                  </>
+                ) : (
+                  <Select.Option value="">No Product Color</Select.Option>
+                )}
+              </Select>
+            </div>
+          </div>
+
+          <div className="col-6">
+            <div className="input-box">
+              <label>
+                Select Product Location<i style={{ color: 'red' }}>*</i>
+              </label>
+              <Select
+                onChange={(value, option) => {
+                  set_product_location(option?.label || '');
+
+                }}
+                style={{ width: "100%" }}
+                placeholder="--Select Product Location--"
+              >
+                {products?.length > 0 ? (
+                  <>
+                    <Select.Option value="" label="Select Product Color">
+                      Select Product Location
+                    </Select.Option>
+                    {products.map((item) => (
+                      <Select.Option
+                        key={item.id}
+                        value={item.id}
+                        label={item.product_location}
+                      >
+                        {item.product_location}
+                      </Select.Option>
+                    ))}
+                  </>
+                ) : (
+                  <Select.Option value="">No Location</Select.Option>
                 )}
               </Select>
             </div>
@@ -173,24 +244,7 @@ const InventryAdd = () => {
               />
             </div>
           </div>
-          <div className="col-6">
-            <div className="input-box">
-              <label htmlFor="location">
-                Location<i style={{ color: 'red' }}>*</i>
-              </label>
-              <Input
-                placeholder="Location"
-                id="location"
-                onChange={(e) => set_location(e.target.value)}
-              />
-              {errors?.location && (
-                <span style={{ color: 'red' }}>{errors?.location[0]}</span>
-              )}
-            </div>
-          </div>
-        </div>
 
-        <div className="row">
           <div className="col-6">
             <div className="input-box">
               <label>
@@ -201,6 +255,33 @@ const InventryAdd = () => {
                 onChange={(date, dateString) => set_date(dateString)}
               />
               {errors?.date && <span style={{ color: 'red' }}>{errors?.date}</span>}
+            </div>
+          </div>
+
+        </div>
+
+        <div className="row">
+          <div className="col-6">
+            <div className="input-box">
+              <label>
+                Available<i style={{ color: 'red' }}>*</i>
+              </label>
+              <Select
+                onChange={(value, option) => {
+                  set_stock_avilable(option?.label || '');
+
+                }}
+                style={{ width: "100%" }}
+                placeholder="--Select Product Location--"
+              >
+
+                <Select.Option value="available" label="Available">
+                  Available
+                </Select.Option>
+                <Select.Option value="out_of_stock" label="Out of Stock">
+                  Out of Stock
+                </Select.Option>
+              </Select>
             </div>
           </div>
         </div>
